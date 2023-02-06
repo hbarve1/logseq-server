@@ -1,0 +1,14 @@
+version: "3.3"
+
+services:
+  logseq-server:
+    container_name: logseq-server
+    # platform: linux/amd64 #for platform error on Apple M1 chips
+    restart: always
+    image: ghcr.io/logseq/logseq-webapp:latest
+    volumes:
+      - ./ssl.conf:/etc/nginx/conf.d/ssl.conf # if you want to use ssl
+      - ./pwd:/etc/nginx/certs
+
+    ports:
+      - "9878:80"
